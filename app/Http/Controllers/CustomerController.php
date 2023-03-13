@@ -11,5 +11,12 @@ class CustomerController extends Controller
     {
         $data = DB::table("customers")->get();
         return view('customer.index',['customers'=>$data]);
-    } 
+    }
+    
+    public function delete($id){
+        $delete = DB::table("customers")
+        ->where("id", "=" , $id)
+        ->delete();
+        return redirect('/')->with('success', 'customer deleted');
+    }
 }

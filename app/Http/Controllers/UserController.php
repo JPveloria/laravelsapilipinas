@@ -20,6 +20,14 @@ class UserController extends Controller
         return view("user.register");
     }
 
+    public function logout(Request $request){
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('login');
+    }
+
     public function process(Request $request)
     {
         $validated = $request->validate([
